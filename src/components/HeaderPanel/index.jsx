@@ -61,7 +61,7 @@ const HeaderPanel = props => {
         </font>
         <br></br>
         <font color="white" size="+2">
-          Feel free to get FTMs to your wallet
+          Feel free to get tFTMs to your wallet
         </font>
       </p>
       <div className="faucetContainer">
