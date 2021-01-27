@@ -48,7 +48,7 @@ const HeaderPanel = props => {
         if (result.hasOwnProperty('error')) {
           setDisplayMsg('Your account ' + result.input + ' has already ' + result.balance + 'tFTMs!');
         } else {
-          setDisplayMsg('10 FTMs has been sent to your address ' + targetAddress);
+          setDisplayMsg('10 tFTMs has been sent to your address ' + targetAddress);
           setFtm(result.remainingBalance);
         }
       });
@@ -84,7 +84,7 @@ const HeaderPanel = props => {
             {displayMsg}
           </FormHelperText>
           <FormHelperText className="helper" id="filled-weight-helper-text">
-            Test Fantoms are served from <b>{address}</b> with <b>{ftm}</b> FTMs, 10 tFTMs each time.
+            tFTMs are served from <b>{address}</b> with <b>{ftm}</b> tFTMs, 10 tFTMs each time.
           </FormHelperText>
         </FormControl>
       </div>
