@@ -78,7 +78,7 @@ const HeaderPanel = props => {
             }}
           />
           <Button variant="contained" color="primary" className="button" onClick={handleGetFTM}>
-            Get FTM
+            Request tFTM
           </Button>
           <FormHelperText className="helper" id="filled-weight-helper-text">
             {displayMsg}
