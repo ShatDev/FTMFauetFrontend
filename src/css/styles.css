@@ -1,0 +1,1433 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-U1Ug.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UNirk-VQ.ttf) format('truetype');
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  /* background-image: linear-gradient(0deg, #BED3E5 0%, #D5E5F1 50%); */
+  font-size: 16px;
+  color: #204066;
+  min-height: 100vh;
+  flex-direction: column;
+}
+h1,
+.h1 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+h2,
+.h2 {
+  font-size: 24px;
+}
+h3,
+.h3 {
+  font-size: 20px;
+}
+h4,
+.h4 {
+  font-size: 18px;
+}
+p {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+.small-text {
+  font-size: 14px;
+}
+.vh-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.increase {
+  color: #58A1FF;
+}
+.price-up {
+  color: #324DFD;
+}
+.disabled {
+  color: #BFD5E4;
+}
+.price-down {
+  color: #F90240;
+}
+.lighter {
+  color: #788FA7;
+}
+.darker {
+  color: #204066;
+}
+.hidden {
+  /* display: none !important; */
+
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: inline-block;
+  z-index: 0;
+  margin: 8px 0 0;
+  padding: 0;
+  border: none;
+  transition-duration: 300ms;
+  width: 120px;
+  height: 32px;
+  border-radius: 8px;
+  box-shadow: inset 0 3px 8px 0 rgba(1, 75, 140, 0.3);
+  background-color: #e7f2f9;
+}
+.slider::before {
+  content: "Yes No";
+  text-align: center;
+  word-spacing: 22px;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 0;
+  border-radius: 8px;
+  background-color: transparent;
+  line-height: 32px;
+  width: 120px;
+  height: 32px;
+}
+.slider::after {
+  content: "Yes";
+  text-align: center;
+  word-spacing: 22px;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 0;
+  border-radius: 8px;
+  line-height: 32px;
+  width: 64px;
+  height: 32px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  background-color: #BFDBF0;
+}
+input:checked + .slider:after {
+  content: 'No';
+  -webkit-transform: translateX(56px);
+  -ms-transform: translateX(56px);
+  transform: translateX(56px);
+}
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+.close-btn {
+  display: block;
+  width: 18px;
+  height: 18px;
+  position: relative;
+  background-color: transparent !important;
+  outline: none !important;
+  border: none !important;
+}
+.close-btn:hover {
+  cursor: pointer;
+}
+.close-btn:focus,
+.close-btn:active {
+  background-color: transparent !important;
+  outline: none !important;
+  border: none !important;
+}
+.close-btn::before,
+.close-btn::after {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 22px;
+  background-color: #7a90a8;
+  position: absolute;
+  left: calc(50% - 1px);
+  top: -2px;
+}
+.close-btn::before {
+  transform: rotate(45deg);
+}
+.close-btn::after {
+  transform: rotate(-45deg);
+}
+.response {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.response_popup {
+  width: 323px;
+  padding: 32px 24px;
+  background-color: #DFECF7;
+  border-top: 8px solid #DFECF7;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.16);
+}
+.response.error {
+  z-index: 99;
+  opacity: 1;
+}
+.response.error .response_popup {
+  border-color: #F90240;
+}
+.response.success {
+  z-index: 99;
+  opacity: 1;
+}
+.response.success .response_popup {
+  border-color: #17D6BA;
+}
+.fast-futures {
+  width: 100%;
+  max-width: 888px;
+  padding: 64px 72px 88px;
+  position: relative;
+  margin-top: auto;
+}
+.fast-futures_main-container {
+  padding: 48px 68px 58px;
+  border-radius: 32px;
+  transition: 0.2s;
+}
+.fast-futures_main-container.game-started {
+  background-color: #E7F2F9;
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.16);
+}
+.fast-futures_title h1 {
+  margin: 0 0 8px 0;
+}
+.fast-futures_title h1 span {
+  color: #F90240;
+}
+.fast-futures_content {
+  width: 100%;
+  min-height: 400px;
+  margin: auto;
+  padding: 32px;
+  position: relative;
+  height: 738px;
+}
+.fast-futures_menu {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  width: 48px;
+}
+.fast-futures_menu_item {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px 0 rgba(1, 75, 140, 0.16), -5px -4px 20px 0 rgba(255, 255, 255, 0.6);
+  margin-bottom: 16px;
+  font-size: 0;
+  line-height: 0;
+}
+.fast-futures_menu_item.home {
+  display: none;
+}
+.fast-futures_menu_item:last-child {
+  margin-bottom: 0;
+}
+.fast-futures_menu_item:nth-last-child(-n + 2) {
+  background-color: transparent;
+  border: none;
+  box-shadow: unset;
+}
+.fast-futures_menu_item .icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background-size: 45%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.fast-futures_menu_item .icon-1 {
+  background-image: url(../assets/Schedule.svg);
+}
+.fast-futures_menu_item .icon-2 {
+  background-image: url(../assets/Leaderboard.svg);
+}
+.fast-futures_menu_item .icon-3 {
+  background-image: url(../assets/Withdraw.svg);
+}
+.fast-futures_menu_item .icon-4 {
+  background-image: url(../assets/Ratio.svg);
+}
+.fast-futures_menu_item .icon-5 {
+  background-color: transparent;
+  background-image: url(../assets/Telegram.svg);
+}
+.fast-futures_menu_item .icon-6 {
+  background-color: transparent;
+  background-image: url(../assets/Help.svg);
+}
+.fast-futures_menu_item.active .icon {
+  border: solid 4px #dfecf7;
+  box-shadow: 1px 1px 0 0 rgba(1, 75, 140, 0.16), 0 0 0 0 rgba(255, 255, 255, 0.5), inset 3px 3px 10px 0 rgba(1, 75, 140, 0.3), inset -5px -5px 8px 0 #ffffff;
+}
+.fast-futures_menu_item.active .icon-1 {
+  background-image: url(../assets/schedule-fill.svg);
+}
+.fast-futures_menu_item.active .icon-2 {
+  background-image: url(../assets/leaderboard-fill.svg);
+}
+.fast-futures_menu_item.active .icon-3 {
+  background-image: url(../assets/withdraw-fill.svg);
+}
+.fast-futures_menu_item.active .icon-4 {
+  background-image: url(../assets/percentage-fill.svg);
+}
+
+.fast-futures_game > * {
+  /* margin-bottom: 36px;
+   */
+   margin-bottom: 24px;
+}
+.fast-futures_start-play {
+  background-color: #DFECF7;
+  border-radius: 32px;
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.16), -8px -10px 20px 0 rgba(250, 250, 250, 0.5), 20px 14px 40px 0 rgba(1, 75, 140, 0.16), inset 1px 1px 0 0 rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 180px;
+  padding: 0 39px;
+  display: flex;
+  align-items: center;
+  color: #204066;
+  position: relative;
+  margin-top: 137px;
+}
+.fast-futures_start-play img {
+  margin-right: 5%;
+}
+.fast-futures_start-play:after {
+  content: "";
+  position: absolute;
+  right: 39px;
+  top: calc(180px / 2 - 28px / 2);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  background-image: url(../assets/arrow.svg);
+}
+
+.fast-futures_game {
+  border-radius: 32px;
+  width: 48%;
+  max-height: 80%;
+  position: absolute;
+  z-index: 10;
+  left : 26%;
+  /* top : 5%; */
+  top : 18%;
+}
+.fast-futures_price-board {
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.16), -16px -20px 30px 0 rgba(250, 250, 250, 0.7), 20px 14px 40px 0 rgba(1, 75, 140, 0.16), inset 1px 1px 0 0 rgba(255, 255, 255, 0.5);
+  background-color: #dfecf7;
+  /* padding: 30px;
+   */
+  padding-top: 19px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 18px;
+  border-radius: 32px;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.fast-futures_price-board .price {
+  font-size: 48px;
+  display: flex;
+}
+.fast-futures_price-board .price span:last-child {
+  font-size: 24px;
+  margin-top: 10px;
+  color: #788FA7;
+  margin-left: 8px;
+}
+.fast-futures_price-board .percent {
+  padding-left: 10px;
+}
+
+
+
+.fast-futures_indicator {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 30px;
+}
+.fast-futures_indicator .h1 {
+  font-weight: 400;
+}
+.fast-futures_indicator * {
+  align-self: center;
+  display: flex;
+  flex: 0 0 33%;
+  justify-content: center;
+}
+.fast-futures_balance-info {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 30px;
+}
+.fast-futures_balance-info .lighter {
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+  color: #788FA7;
+}
+.fast-futures_balance-info .lighter:nth-child(1) {
+  text-align: left;
+}
+.fast-futures_balance-info .lighter:nth-child(2) {
+  text-align: center;
+}
+.fast-futures_balance-info .lighter:nth-child(3) {
+  text-align: right;
+}
+.fast-futures_balance-info .label {
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: normal;
+  margin-bottom: 5px;
+}
+.fast-futures_balance-info .balance {
+  font-size: 18px;
+}
+.fast-futures_balance-info .balance span {
+  font-size: 14px;
+}
+.fast-futures_buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.fast-futures_buttons a {
+  height: 80px;
+  border-radius: 24px;
+  width: calc(50% - 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+.fast-futures_buttons .lower-price {
+  box-shadow: 8px 20px 30px 0 rgba(250, 31, 55, 0.3), -8px -10px 30px 0 rgba(250, 250, 250, 0.7), 4px 4px 10px 0 rgba(209, 13, 35, 0.3);
+  background-image: linear-gradient(to left, #FF7341, #F90034 50%);
+}
+.fast-futures_buttons .higher-price {
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.4), -8px -10px 30px 0 rgba(255, 255, 255, 0.7), 4px 4px 10px 0 rgba(1, 75, 140, 0.3);
+  background-image: linear-gradient(to left, #1D00F9, #414EFF 50%);
+}
+.fast-futures_bet-info {
+  display: flex;
+  flex-flow: row nowrap;
+  border-radius: 24px;
+  box-shadow: inset 1px 1px 0 0 #ffffff, 8px 20px 60px 0 rgba(1, 75, 140, 0.16), -16px -20px 30px 0 rgba(250, 250, 250, 0.7), 20px 14px 40px 0 rgba(1, 75, 140, 0.16), inset 1px 1px 0 0 rgba(255, 255, 255, 0.5);
+  background-color: #BFDBF0;
+}
+.fast-futures_bet-info .left-col {
+  position: relative;
+  z-index: 9;
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.16), -16px -20px 30px 0 rgba(250, 250, 250, 0.7), 20px 14px 40px 0 rgba(1, 75, 140, 0.16), inset 1px 1px 0 0 rgba(255, 255, 255, 0.5);
+  background-color: #dfecf7;
+  border-radius: 24px;
+  flex: 0 0 200px;
+  padding: 32px 40px 25px;
+}
+.fast-futures_bet-info .right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  margin: 8px 8px 8px -50px;
+  padding: 10px 30px 10px 80px;
+  flex: 1 1 auto;
+  line-height: 1.14;
+  border-radius: 24px;
+  box-shadow: inset -2px -2px 6px 0 rgba(255, 255, 255, 0.5), inset 8px 8px 15px 0 rgba(1, 75, 140, 0.2);
+}
+.fast-futures_bet-info .info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.fast-futures_bet-info .info-row:last-child {
+  margin-bottom: 0;
+}
+.fast-futures_bet-info .label {
+  font-size: 14px;
+  color: #788FA7;
+}
+.fast-futures_bet-info .value {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: right;
+}
+.fast-futures_bet-info .bet-size {
+  margin-bottom: 27px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.fast-futures_bet-info .bet-size input {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  color: #204066;
+  min-width: 10px;
+  width: 40px;
+  max-width: 80px;
+}
+.fast-futures_bet-info .bet-size input::-webkit-outer-spin-button,
+.fast-futures_bet-info .bet-size input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.fast-futures_bet-info .bet-size input:focus,
+.fast-futures_bet-info .bet-size input:active {
+  box-shadow: unset;
+  border: none;
+  outline: none;
+}
+.fast-futures_ratio-table {
+  border-radius: 24px;
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.16), -16px -20px 30px 0 rgba(250, 250, 250, 0.7), 20px 14px 40px 0 rgba(1, 75, 140, 0.16), inset 1px 1px 0 0 rgba(255, 255, 255, 0.5);
+  background-color: #DFECF7;
+  padding: 24px 40px;
+  margin-bottom: 30px;
+}
+.fast-futures_ratio-table .head {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.fast-futures_ratio-item {
+  margin-bottom: 16px;
+}
+.fast-futures_ratio-item:last-child {
+  margin-bottom: 0;
+}
+.fast-futures_ratio-item .head-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  color: #788FA7;
+}
+.fast-futures_ratio-item .progress-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #788FA7;
+}
+.fast-futures_ratio-item .progress-row .value {
+  flex-basis: 40px;
+}
+.fast-futures_ratio-item .label {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.fast-futures_ratio-item .value {
+  font-size: 14px;
+}
+.fast-futures_ratio-item .value.left {
+  margin-right: 16px;
+  border-top-left-radius: 8px;
+}
+.fast-futures_ratio-item .value.right {
+  margin-left: 16px;
+  text-align: right;
+}
+.fast-futures_ratio-item .progress {
+  flex-grow: 1;
+  background-color: #E7F2F9;
+  height: 16px;
+  position: relative;
+}
+.fast-futures_ratio-item .progress.left {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.fast-futures_ratio-item .progress.left .progress-bar {
+  right: 0;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: #F90034;
+  background-image: linear-gradient(to right, #F90034, #FF7341 50%);
+}
+.fast-futures_ratio-item .progress.right {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.fast-futures_ratio-item .progress.right .progress-bar {
+  left: 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: #1D00F9;
+  background-image: linear-gradient(to left, #1D00F9, #414EFF 50%);
+}
+.fast-futures_ratio-item .progress-bar {
+  position: absolute;
+  height: 100%;
+}
+.fast-futures_leaderboard {
+  padding: 40px 30px;
+  background-color: #DFECF7;
+  border-radius: 32px;
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.16), -16px -20px 30px 0 rgba(250, 250, 250, 0.7), 20px 14px 40px 0 rgba(1, 75, 140, 0.16), inset 1px 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+.fast-futures_leaderboard .head {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.fast-futures_leaderboard table {
+  width: calc(100% + 18px);
+}
+.fast-futures_leaderboard thead {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  width: calc(100% - 50px);
+}
+.fast-futures_leaderboard thead tr td {
+  padding-bottom: 5px;
+}
+.fast-futures_leaderboard tbody {
+  display: block;
+  width: 100%;
+  padding-right: 34px;
+  overflow-y: scroll;
+  max-height: 500px;
+}
+.fast-futures_leaderboard tbody::-webkit-scrollbar {
+  width: 12px;
+}
+.fast-futures_leaderboard tbody::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.fast-futures_leaderboard tbody::-webkit-scrollbar-thumb {
+  outline: 1px solid slategrey;
+  width: 12px;
+  height: 200px;
+  border-radius: 8px;
+  background-color: #778da6;
+}
+.fast-futures_leaderboard tbody tr {
+  table-layout: fixed;
+}
+.fast-futures_leaderboard tbody tr td:first-child {
+  padding-left: 20px;
+}
+.fast-futures_leaderboard tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.fast-futures_leaderboard tr td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.fast-futures_leaderboard tr td:first-child {
+  width: 100px;
+}
+.fast-futures_leaderboard tr td:last-child {
+  text-align: right;
+}
+.fast-futures_bet-on-price {
+  padding: 34px 34px 40px;
+  background-color: #DFECF7;
+  border-radius: 32px;
+  position: relative;
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.16), -16px -20px 30px 0 rgba(250, 250, 250, 0.7), 20px 14px 40px 0 rgba(1, 75, 140, 0.16), inset 1px 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+.fast-futures_bet-on-price .head {
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+}
+.fast-futures_bet-on-price .head .main-label {
+  font-size: 24px;
+  font-weight: 600;
+}
+.fast-futures_bet-on-price .form-table {
+  max-height: 450px;
+  overflow-y: scroll;
+  padding-right: 20px;
+  margin-bottom: 15px;
+  width: calc(100% + 20px);
+  position: relative;
+}
+.fast-futures_bet-on-price .form-table::-webkit-scrollbar {
+  width: 12px;
+}
+.fast-futures_bet-on-price .form-table::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.fast-futures_bet-on-price .form-table::-webkit-scrollbar-thumb {
+  outline: 1px solid slategrey;
+  width: 12px;
+  height: 200px;
+  border-radius: 8px;
+  background-color: #778da6;
+}
+.fast-futures_bet-on-price .overflow-gradient {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 120px;
+  width: calc(100% - 60px);
+  left: 30px;
+  height: 89px;
+  background-image: linear-gradient(to bottom, rgba(223, 236, 247, 0), rgba(223, 236, 247, 0.8) 50%);
+}
+.fast-futures_bet-on-price .bet-row {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 22px;
+}
+.fast-futures_bet-on-price .bet-row:last-child {
+  margin-bottom: 100px;
+}
+.fast-futures_bet-on-price .schedule {
+  margin-right: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.fast-futures_bet-on-price .schedule span {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  color: #788FA7;
+}
+.fast-futures_bet-on-price .bet {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.fast-futures_bet-on-price .bet span {
+  font-size: 14px;
+  padding-left: 3px;
+}
+.fast-futures_bet-on-price .stake-row {
+  display: flex;
+  margin-left: auto;
+}
+.fast-futures_bet-on-price .btn-short {
+  color: #fff;
+}
+.fast-futures_bet-on-price .btn-short::before {
+  content: 'Short';
+  display: inline-block;
+  width: 96px;
+  height: 40px;
+  border-radius: 16px;
+  background-color: #bfd5e4;
+  line-height: 40px;
+  text-align: center;
+}
+.fast-futures_bet-on-price .btn-long {
+  color: #fff;
+}
+.fast-futures_bet-on-price .btn-long::before {
+  content: 'Long';
+  display: inline-block;
+  width: 96px;
+  height: 40px;
+  border-radius: 16px;
+  background-color: #bfd5e4;
+  line-height: 40px;
+  text-align: center;
+}
+.fast-futures_bet-on-price label {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.fast-futures_bet-on-price input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.fast-futures_bet-on-price input:checked + .btn-short::before {
+  background-color: red;
+  background-image: linear-gradient(to right, #F90034, #FF7341 50%);
+}
+.fast-futures_bet-on-price input:checked + .btn-long::before {
+  background-color: blue;
+  background-image: linear-gradient(to right, #1D00F9, #414EFF 50%);
+}
+.fast-futures_bet-on-price .switch {
+  margin: 8px 0 0 18px;
+  padding: 0;
+}
+.fast-futures_bet-on-price .switch .slider {
+  display: inline-block;
+  z-index: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms;
+  width: 50px;
+  height: 24px;
+  border-radius: 16px;
+  margin: 0;
+}
+.fast-futures_bet-on-price .switch .slider::before {
+  display: none;
+}
+.fast-futures_bet-on-price .switch .slider::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  border-radius: 20px;
+  background-color: #bfd5e4;
+}
+.fast-futures_bet-on-price .switch input:checked + .slider:after {
+  content: '';
+  -webkit-transform: translate(24px, -3px);
+  -ms-transform: translate(24px, -3px);
+  transform: translate(24px, -3px);
+  background-color: #17D6BA;
+  width: 32px;
+  height: 32px;
+}
+.fast-futures_bet-on-price .btn-schedule {
+  display: block;
+  background-color: #17D6BA;
+  width: 264px;
+  height: 80px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 24px;
+  box-shadow: 8px 20px 60px 0 rgba(1, 140, 119, 0.4), -8px -10px 30px 0 rgba(255, 255, 255, 0.7), 4px 4px 10px 0 rgba(1, 140, 119, 0.3);
+  background-image: linear-gradient(to left, #17d68d, #17d6ba 0%);
+  position: relative;
+  z-index: 19;
+}
+.fast-futures_withdraw {
+  padding: 40px 30px 40px 40px;
+  background-color: #DFECF7;
+  border-radius: 32px;
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.16), -16px -20px 30px 0 rgba(250, 250, 250, 0.7), 20px 14px 40px 0 rgba(1, 75, 140, 0.16), inset 1px 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+.fast-futures_withdraw .head {
+  margin-bottom: 72px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+  font-weight: 600;
+}
+.fast-futures_withdraw .label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.fast-futures_withdraw .value {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 10px;
+}
+.fast-futures_withdraw .value input {
+  flex-grow: 2;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+}
+.fast-futures_withdraw .value input::placeholder {
+  color: #bfd5e4;
+}
+.fast-futures_withdraw .value input:focus,
+.fast-futures_withdraw .value input:active {
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+.fast-futures_withdraw .value button {
+  flex-basis: 100px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: left;
+  color: #58a1ff;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+}
+.fast-futures_withdraw .value button:focus,
+.fast-futures_withdraw .value button:active {
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+.fast-futures_withdraw .balance {
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  color: #788FA7;
+  margin-bottom: 88px;
+}
+.fast-futures_withdraw .btn {
+  width: 264px;
+  height: 80px;
+  border-radius: 24px;
+  box-shadow: 8px 20px 60px 0 rgba(1, 75, 140, 0.4), -8px -10px 30px 0 rgba(255, 255, 255, 0.7), 4px 4px 10px 0 rgba(1, 75, 140, 0.3);
+  background-image: linear-gradient(to left, #414eff, #1d00f9 0%);
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+.fast-futures_withdraw .btn:focus,
+.fast-futures_withdraw .btn:active {
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+.fast-futures_bottom-info {
+  position: absolute;
+  width: calc(100% - 84px);
+  bottom: -25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  left: 42px;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+.fast-futures_bottom-info .price,
+.fast-futures_bottom-info .time {
+  color: #788FA7;
+}
+.fast-futures_bottom-info .price span,
+.fast-futures_bottom-info .time span {
+  font-weight: 600;
+}
+.powered-by {
+  position: relative;
+  z-index: 200;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-top: auto;
+}
+.powered-by a {
+  padding-top: 4px;
+  display: inline-block;
+  padding-left: 5px;
+}
+.powered-by a svg {
+  display: block;
+  max-width: 100%;
+}
+.feature-game-slider {
+  box-shadow: inset 1px 1px 0 0 #ffffff, 8px 20px 60px 0 rgba(1, 75, 140, 0.16), -16px -20px 30px 0 rgba(250, 250, 250, 0.7), 20px 14px 40px 0 rgba(1, 75, 140, 0.16), inset 1px 1px 0 0 rgba(255, 255, 255, 0.5);
+  margin-bottom: 40px;
+  border-radius: 32px;
+  background-color: transparent;
+}
+.feature-game-slider .fast-futures_ratio-table {
+  box-shadow: unset;
+  margin-bottom: 0;
+  height: 187px;
+}
+.feature-game-slider .fast-futures_bet-info {
+  box-shadow: unset;
+  margin-bottom: 0;
+  height: 187px;
+}
+.feature-game-slider .fast-futures_bet-info .left-col {
+  box-shadow: unset;
+}
+.feature-game-slider {
+  box-shadow: inset 1px 1px 0 0 #ffffff, 8px 20px 60px 0 rgba(1, 75, 140, 0.16), -16px -20px 30px 0 rgba(250, 250, 250, 0.7), 20px 14px 40px 0 rgba(1, 75, 140, 0.16), inset 1px 1px 0 0 rgba(255, 255, 255, 0.5);
+  margin-bottom: 40px;
+  border-radius: 32px;
+  background-color: transparent;
+}
+.feature-game-slider .fast-futures_ratio-table {
+  box-shadow: unset;
+  margin-bottom: 0;
+  height: 187px;
+}
+.feature-game-slider .fast-futures_bet-info {
+  box-shadow: unset;
+  margin-bottom: 0;
+  height: 187px;
+}
+.feature-game-slider .fast-futures_bet-info .left-col {
+  box-shadow: unset;
+}
+.slick-item:focus,
+.slick-item:active {
+  border: none;
+  outline: none;
+}
+.slick-dots {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  display: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0 0 -34px;
+}
+.slick-dots li {
+  list-style-type: none;
+  line-height: 0;
+  font-size: 0;
+  border: none;
+  padding: 0 8px;
+}
+.slick-dots li button {
+  background-color: #DFECF7;
+  padding: 0;
+  height: 12px;
+  width: 12px;
+  border: none;
+  border-radius: 6px;
+}
+.slick-dots li.slick-active button {
+  background-color: #788FA7;
+}
+@media screen and (min-width: 993px) {
+  .slick-dots {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .fast-futures {
+    padding: 86px 28px 88px;
+  }
+  .fast-futures_menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(198deg, #d5e5f1, #bed3e5 50%);
+    z-index: 99;
+    transition: 0.2s;
+  }
+  .fast-futures_menu_btn {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .fast-futures_menu_btn span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    margin-bottom: 7px;
+    background-color: #788FA7;
+    z-index: 100;
+    transition: 0.2s;
+  }
+  .fast-futures_menu_btn span:last-child {
+    margin-bottom: 0;
+  }
+  .fast-futures_menu.active {
+    left: 0;
+  }
+  .fast-futures_menu.active .fast-futures_menu_btn span {
+    padding-top: 0;
+    margin-bottom: unset;
+  }
+  .fast-futures_menu.active .fast-futures_menu_btn span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 13px);
+    width: 40px;
+  }
+  .fast-futures_menu.active .fast-futures_menu_btn span:nth-child(2) {
+    width: 0;
+  }
+  .fast-futures_menu.active .fast-futures_menu_btn span:nth-child(3) {
+    transform: rotate(-45deg) translate(-10px, 3px);
+    width: 40px;
+  }
+  .fast-futures_menu_item {
+    width: max-content;
+    height: auto;
+    padding-bottom: 25px;
+    padding-top: 25px;
+    background-color: transparent;
+    box-shadow: unset;
+    order: 1;
+    font-size: 24px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: center;
+    color: #204066;
+    margin-bottom: 0;
+  }
+  .fast-futures_menu_item.telegram {
+    order: 9;
+    margin-top: 15px;
+  }
+  .fast-futures_menu_item .icon {
+    display: none;
+  }
+  .fast-futures_menu_item .icon-5 {
+    width: 48px;
+    height: 48px;
+    display: block;
+  }
+  .fast-futures_main-container {
+    padding: 48px 48px 58px;
+  }
+  .fast-futures_price-board {
+    margin-bottom: 45px;
+    padding: 30px 40px;
+  }
+  .fast-futures_indicator {
+    margin-bottom: 25px;
+  }
+  .fast-futures_bet-on-price .form-table {
+    margin-bottom: 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  body {
+    background-color: #DFECF7;
+    background-image: unset;
+  }
+  body.bg-off {
+    background-image: unset;
+  }
+  .feature-game-slider .fast-futures_ratio-table {
+    height: 165px;
+  }
+  .feature-game-slider .fast-futures_bet-info {
+    height: 165px;
+  }
+  h1,
+  .h1,
+  h2,
+  .h2 {
+    font-size: 18px;
+  }
+  h3,
+  .h3 {
+    font-size: 16px;
+  }
+  .fast-futures {
+    padding: 0;
+  }
+  .fast-futures_title h1 {
+    padding-right: 50px;
+  }
+  .fast-futures_start-play {
+    padding: 0 20px;
+    height: 110px;
+  }
+  .fast-futures_start-play::after {
+    width: 14px;
+    height: 12px;
+    right: 29px;
+    top: calc(130px / 2 - 28px / 2);
+  }
+  .fast-futures_start-play img {
+    width: 36px;
+    margin-right: 3%;
+  }
+  .fast-futures_main-container {
+    padding: 24px 16px 58px;
+    border-radius: 0;
+  }
+  .fast-futures_main-container.game-started {
+    background-color: transparent;
+    box-shadow: unset;
+  }
+  .fast-futures_content {
+    padding: 20px 0;
+    height: auto;
+  }
+  .fast-futures_price-board {
+    padding: 20px 22px;
+    margin-bottom: 25px;
+  }
+  .fast-futures_price-board .price {
+    font-size: 32px;
+    line-height: 1.8;
+  }
+  .fast-futures_price-board .price span:last-child {
+    font-size: 18px;
+    margin-top: 6px;
+  }
+  .fast-futures_price-board .percent {
+    font-size: 14px;
+  }
+  .fast-futures_indicator {
+    padding: 0;
+    font-size: 14px;
+  }
+  .fast-futures_indicator > * {
+    max-width: 80px;
+    width: max-content;
+  }
+  .fast-futures_indicator > *:last-child {
+    text-align: right;
+  }
+  .fast-futures_bet-info .left-col {
+    flex: 0 0 170px;
+    padding: 18px 24px;
+  }
+  .fast-futures_bet-info .right-col {
+    padding: 10px 10px 10px 65px;
+  }
+  .fast-futures_bet-info .info-row {
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+  }
+  .fast-futures_bet-info .label {
+    font-size: 12px;
+  }
+  .fast-futures_bet-info .value {
+    font-size: 14px;
+  }
+  .fast-futures_balance-info .lighter {
+    flex-basis: 0;
+  }
+  .fast-futures_balance-info .label {
+    font-size: 12px;
+  }
+  .fast-futures_balance-info .balance {
+    font-size: 14px;
+  }
+  .fast-futures_balance-info .balance span {
+    white-space: nowrap;
+  }
+  .fast-futures_buttons a {
+    text-align: center;
+    font-size: 14px;
+    height: 64px;
+  }
+  .fast-futures_ratio-table {
+    padding: 10px 20px;
+  }
+  .fast-futures_ratio-table .head {
+    margin-bottom: 10px;
+  }
+  .fast-futures_ratio-table .progress {
+    height: 16px;
+  }
+  .fast-futures_leaderboard {
+    box-shadow: unset;
+    background-color: transparent;
+    padding: 0;
+  }
+  .fast-futures_leaderboard .head {
+    display: none;
+  }
+  .fast-futures_leaderboard table {
+    width: 100%;
+  }
+  .fast-futures_leaderboard thead {
+    width: 100%;
+  }
+  .fast-futures_leaderboard thead tr td {
+    padding-top: 0;
+    font-size: 14px;
+  }
+  .fast-futures_leaderboard tbody {
+    width: 100%;
+    padding-right: 0;
+  }
+  .fast-futures_leaderboard tbody::-webkit-scrollbar {
+    display: none;
+  }
+  .fast-futures_leaderboard tbody tr td:first-child {
+    padding-left: 10px;
+  }
+  .fast-futures_leaderboard tr td:first-child {
+    width: 65px;
+  }
+  .fast-futures_leaderboard tr td:last-child {
+    white-space: nowrap;
+  }
+  .fast-futures_bottom-info {
+    display: none;
+  }
+  .fast-futures_bet-on-price {
+    padding: 0;
+    box-shadow: unset;
+    background-color: transparent;
+    padding-right: 16px;
+  }
+  .fast-futures_bet-on-price .head {
+    display: none;
+  }
+  .fast-futures_bet-on-price .form-table {
+    padding-right: 0;
+    max-height: 496px;
+  }
+  .fast-futures_bet-on-price .form-table::-webkit-scrollbar {
+    display: none;
+  }
+  .fast-futures_bet-on-price .overflow-gradient {
+    width: 100%;
+    left: 0;
+    bottom: 60px;
+  }
+  .fast-futures_bet-on-price .btn-short::before {
+    width: 64px;
+  }
+  .fast-futures_bet-on-price .btn-long::before {
+    width: 64px;
+  }
+  .fast-futures_bet-on-price label {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .fast-futures_bet-on-price .btn-schedule {
+    font-size: 16px;
+    width: 221px;
+    height: 64px;
+    border-radius: 20px;
+    box-shadow: 8px 20px 60px 0 rgba(1, 140, 119, 0.4), -8px -10px 30px 0 rgba(255, 255, 255, 0.7), 4px 4px 10px 0 rgba(1, 140, 119, 0.3);
+    background-image: linear-gradient(to left, #17d68d, #17d6ba 0%);
+  }
+  .fast-futures_withdraw {
+    padding: 0;
+    box-shadow: unset;
+    background-color: transparent;
+  }
+  .fast-futures_withdraw .head {
+    display: none;
+  }
+  .fast-futures_withdraw .body {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh ;
+  }
+  .fast-futures_withdraw .body .label {
+    margin-top: auto;
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+  .fast-futures_withdraw .body .balance {
+    margin-bottom: auto;
+  }
+  .fast-futures_withdraw .body .btn {
+    height: 60px;
+    border-radius: 18px;
+    width: 224px;
+    font-size: 16px;
+  }
+  .powered-by {
+    font-size: 11px;
+  }
+  .powered-by a {
+    width: 70px;
+  }
+  .powered-by a img {
+    max-width: 100%;
+  }
+}
+/*# sourceMappingURL=styles.css.map */

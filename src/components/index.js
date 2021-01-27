@@ -1,0 +1,5 @@
+export * from './WavePanel'
+export * from './BottomPanel'
+export * from './HeaderPanel'
+export * from './ConnectMetamaskPanel'
+export * from './PlayPannel'

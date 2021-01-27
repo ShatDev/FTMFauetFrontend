@@ -1,0 +1,22 @@
+.footerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color:white;
+    /* height: 15% !important; */
+    height : 8% !important;
+    position: fixed;
+    bottom: 0;
+    height: 10%;
+    width: 100%;
+}
+
+.icons {
+    position: fixed;
+    right: 10%;
+}
+
+.icon {
+    margin-left: 10px;
+}

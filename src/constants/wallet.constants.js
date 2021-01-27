@@ -1,0 +1,4 @@
+export const walletConstants = {
+    WALLETCONNECTED : 'WALLETCONNECTED',
+    WALLETDISCONNECTED : 'WALLETDISCONNECTED'
+}
