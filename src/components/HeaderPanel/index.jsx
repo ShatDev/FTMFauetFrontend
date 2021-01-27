@@ -46,7 +46,7 @@ const HeaderPanel = props => {
       .then(res => res.json())
       .then(result => {
         if (result.hasOwnProperty('error')) {
-          setDisplayMsg('Your account ' + result.input + ' has already ' + result.balance + 'FTM!');
+          setDisplayMsg('Your account ' + result.input + ' has already ' + result.balance + 'tFTMs!');
         } else {
           setDisplayMsg('10 FTMs has been sent to your address ' + targetAddress);
           setFtm(result.remainingBalance);
