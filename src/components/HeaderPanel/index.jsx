@@ -46,9 +46,9 @@ const HeaderPanel = props => {
       .then(res => res.json())
       .then(result => {
         if (result.hasOwnProperty('error')) {
-          setDisplayMsg('Your account ' + result.input + ' has already ' + result.balance + 'tFTMs!');
+          setDisplayMsg('Your account ' + result.input + ' has already ' + result.balance + 'test FTMs!');
         } else {
-          setDisplayMsg('10 tFTMs has been sent to your address ' + targetAddress);
+          setDisplayMsg('10 test FTMs has been sent to your address ' + targetAddress);
           setFtm(result.remainingBalance);
         }
       });
@@ -61,7 +61,7 @@ const HeaderPanel = props => {
         </font>
         <br></br>
         <font color="white" size="+2">
-          Feel free to get tFTMs to your wallet
+          Feel free to get test FTMs to your wallet
         </font>
       </p>
       <div className="faucetContainer">
@@ -84,7 +84,7 @@ const HeaderPanel = props => {
             {displayMsg}
           </FormHelperText>
           <FormHelperText className="helper" id="filled-weight-helper-text">
-            tFTMs are served from <b>{address}</b> with <b>{ftm}</b> tFTMs, 10 tFTMs each time.
+            test FTMs are served from <b>{address}</b> with <b>{ftm}</b> test FTMs, 10 test FTMs each time.
           </FormHelperText>
         </FormControl>
       </div>
