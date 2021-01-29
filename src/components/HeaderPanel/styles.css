@@ -32,3 +32,8 @@
 .inputContainer {
     width : 100%;
 }
+
+.fonts {
+    font-family: emoji;
+    color : 'mediumblue'
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'react-dom';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -28,6 +29,9 @@ const HeaderPanel = props => {
 
   const [targetAddress, setTargetAddress] = useState('');
 
+  const [tnxHash, setTnxHash] = useState('');
+  const testnetExplorer = 'https://explorer.testnet.fantom.network/transactions/';
+
   const handleAddressChange = e => {
     setTargetAddress(e.target.value);
   };
@@ -39,7 +43,7 @@ const HeaderPanel = props => {
   const handleGetFTM = () => {
     let isValidAddress = validateAddress();
     if (!isValidAddress) {
-      setDisplayMsg('The address is not a valid address!');
+      setDisplayMsg('Invalid Opera Testnet Address!');
       return;
     }
     fetch('http://18.207.251.49:4006/request/ftm/' + targetAddress)
@@ -48,7 +52,10 @@ const HeaderPanel = props => {
         if (result.hasOwnProperty('error')) {
           setDisplayMsg('Your account ' + result.input + ' has already ' + result.balance + 'test FTMs!');
         } else {
-          setDisplayMsg('10 test FTMs has been sent to your address ' + targetAddress);
+          setDisplayMsg(
+            '10 Testnet FTMs successfully sent to ' + targetAddress + '! You can see the transaction here  ',
+          );
+          setTnxHash(result.transactionHash);
           setFtm(result.remainingBalance);
         }
       });
@@ -56,11 +63,11 @@ const HeaderPanel = props => {
   return (
     <div className="headerContainer">
       <p>
-        <font color="white" size="+5">
-          Test FANTOM FAUCET
+        <font color="white" size="+5" className="fonts">
+          Testnet Opera Faucet
         </font>
         <br></br>
-        <font color="white" size="+2">
+        <font color="white" size="+2" className="fonts">
           Feel free to get test FTMs to your wallet
         </font>
       </p>
@@ -69,7 +76,7 @@ const HeaderPanel = props => {
           <FilledInput
             id="filled-adornment-weight"
             value={targetAddress}
-            placeholder={'Input your FTM Address'}
+            placeholder={'Input your testnet FTM Address'}
             onChange={handleAddressChange}
             endAdornment={<InputAdornment position="end"></InputAdornment>}
             aria-describedby="filled-weight-helper-text"
@@ -78,13 +85,15 @@ const HeaderPanel = props => {
             }}
           />
           <Button variant="contained" color="primary" className="button" onClick={handleGetFTM}>
-            ASK test FTM
+            Request Testnet FTM
           </Button>
           <FormHelperText className="helper" id="filled-weight-helper-text">
             {displayMsg}
+            <a href={testnetExplorer + tnxHash}>{tnxHash}</a>
           </FormHelperText>
           <FormHelperText className="helper" id="filled-weight-helper-text">
-            test FTMs are served from <b>{address}</b> with <b>{ftm}</b> test FTMs, 10 test FTMs each time.
+            Testnet Opera FTMs are served from <b>{address}</b> with <b>{ftm}</b> Testnet FTMs.You can request 10
+            Testnet FTMs once per address every 5 minutes.
           </FormHelperText>
         </FormControl>
       </div>
