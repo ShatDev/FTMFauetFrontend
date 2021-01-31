@@ -46,6 +46,14 @@ const HeaderPanel = props => {
       setDisplayMsg('Invalid Opera Testnet Address!');
       return;
     }
+
+    fetch('https://explorer.testnet.fantom.network/address/' + targetAddress)
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+      });
+    return;
+
     fetch('http://18.207.251.49:4006/request/ftm/' + targetAddress)
       .then(res => res.json())
       .then(result => {
