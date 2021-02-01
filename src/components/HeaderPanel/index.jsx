@@ -44,6 +44,7 @@ const HeaderPanel = props => {
     let isValidAddress = validateAddress();
     if (!isValidAddress) {
       setDisplayMsg('Invalid Opera Testnet Address!');
+      setTnxHash('');
       return;
     }
 
