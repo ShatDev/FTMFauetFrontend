@@ -47,19 +47,27 @@ const HeaderPanel = props => {
       return;
     }
 
-    fetch('https://explorer.testnet.fantom.network/address/' + targetAddress)
-      .then(res => res.json())
-      .then(result => {
-        console.log(result);
-      });
-    return;
+    const sleep = ms => {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    };
+
+    const sleepEffect = async () => {
+      setDisplayMsg('');
+      await sleep(100);
+    };
 
     fetch('http://18.207.251.49:4006/request/ftm/' + targetAddress)
       .then(res => res.json())
-      .then(result => {
+      .then(async result => {
         if (result.hasOwnProperty('error')) {
+          await sleepEffect();
           setDisplayMsg('Your account ' + result.input + ' has already ' + result.balance + 'test FTMs!');
+        } else if (result.hasOwnProperty('timeerror')) {
+          await sleepEffect();
+          setDisplayMsg(result.timeerror);
+          setTnxHash('');
         } else {
+          await sleepEffect();
           setDisplayMsg(
             '10 Testnet FTMs successfully sent to ' + targetAddress + '! You can see the transaction here  ',
           );
@@ -97,7 +105,9 @@ const HeaderPanel = props => {
           </Button>
           <FormHelperText className="helper" id="filled-weight-helper-text">
             {displayMsg}
-            <a href={testnetExplorer + tnxHash}>{tnxHash}</a>
+            <a href={testnetExplorer + tnxHash} target="_blank">
+              {tnxHash}
+            </a>
           </FormHelperText>
           <FormHelperText className="helper" id="filled-weight-helper-text">
             Testnet Opera FTMs are served from <b>{address}</b> with <b>{ftm}</b> Testnet FTMs.You can request 10
