@@ -48,6 +48,11 @@ const HeaderPanel = props => {
       return;
     }
 
+    const toggleRequestButton = () => {
+      let btn = document.getElementById('requestBtn');
+      btn.disabled = !btn.disabled;
+    };
+
     const sleep = ms => {
       return new Promise(resolve => setTimeout(resolve, ms));
     };
@@ -56,17 +61,19 @@ const HeaderPanel = props => {
       setDisplayMsg('');
       await sleep(100);
     };
-
+    toggleRequestButton();
     fetch('http://18.207.251.49:4006/request/ftm/' + targetAddress)
       .then(res => res.json())
       .then(async result => {
         if (result.hasOwnProperty('error')) {
           await sleepEffect();
           setDisplayMsg('Your account ' + result.input + ' has already ' + result.balance + 'test FTMs!');
+          toggleRequestButton();
         } else if (result.hasOwnProperty('timeerror')) {
           await sleepEffect();
           setDisplayMsg(result.timeerror);
           setTnxHash('');
+          toggleRequestButton();
         } else {
           await sleepEffect();
           setDisplayMsg(
@@ -74,6 +81,7 @@ const HeaderPanel = props => {
           );
           setTnxHash(result.transactionHash);
           setFtm(result.remainingBalance);
+          toggleRequestButton();
         }
       });
   };
@@ -101,7 +109,7 @@ const HeaderPanel = props => {
               'aria-label': 'weight',
             }}
           />
-          <Button variant="contained" color="primary" className="button" onClick={handleGetFTM}>
+          <Button id="requestBtn" variant="contained" color="primary" className="button" onClick={handleGetFTM}>
             Request Testnet FTM
           </Button>
           <FormHelperText className="helper" id="filled-weight-helper-text">
@@ -111,8 +119,8 @@ const HeaderPanel = props => {
             </a>
           </FormHelperText>
           <FormHelperText className="helper" id="filled-weight-helper-text">
-            Testnet Opera FTMs are served from <b>{address}</b> with <b>{ftm}</b> Testnet FTMs.You can request 10
-            Testnet FTMs once per address every 5 minutes.
+            Testnet Opera FTMs are served from <b>{address}</b> with <b>{ftm}</b> Testnet FTMs.<br></br>You can request
+            10 Testnet FTMs once per address every 5 minutes.
           </FormHelperText>
         </FormControl>
       </div>
