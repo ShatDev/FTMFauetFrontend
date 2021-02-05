@@ -14,7 +14,8 @@ import './styles.css';
 
 const HeaderPanel = props => {
   useEffect(() => {
-    fetch('http://18.207.251.49:4006/status/ftm')
+    // fetch('http://18.207.251.49:4006/status/ftm')
+    fetch('https://api.faucet.fantom.network/status/ftm')
       .then(res => res.json())
       .then(result => {
         setAddress(result.address);
@@ -62,7 +63,8 @@ const HeaderPanel = props => {
       await sleep(100);
     };
     toggleRequestButton();
-    fetch('http://18.207.251.49:4006/request/ftm/' + targetAddress)
+    // fetch('http://18.207.251.49:4006/request/ftm/' + targetAddress)
+    fetch('https://api.faucet.fantom.network/request/ftm' + targetAddress)
       .then(res => res.json())
       .then(async result => {
         if (result.hasOwnProperty('error')) {
