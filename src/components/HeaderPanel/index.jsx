@@ -64,7 +64,7 @@ const HeaderPanel = props => {
     };
     toggleRequestButton();
     // fetch('http://18.207.251.49:4006/request/ftm/' + targetAddress)
-    fetch('https://api.faucet.fantom.network/request/ftm' + targetAddress)
+    fetch('https://api.faucet.fantom.network/request/ftm/' + targetAddress)
       .then(res => res.json())
       .then(async result => {
         if (result.hasOwnProperty('error')) {
